@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import "../src/index.css";
 const pizzaData = [
   {
     name: "Focaccia",
@@ -48,24 +48,57 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <h1>Hello react!!!</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
     </div>
   );
 }
 
+function Header() {
+  // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+  const style = {};
+  return (
+    <header className="header">
+      <h1 style={style}>Fast react Pizza Co.</h1>
+    </header>
+  );
+}
+
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </main>
+  );
+}
+
 function Pizza() {
+  const hour = new Date().getHours();
+  console.log(hour);
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour ? true : false;
+
   return (
     <div>
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
       <img src="pizzas/spinaci.jpg" alt="spinaci pizza" />
+      <h3>Pizza Spinaci</h3>
+      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
     </div>
   );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">{`${new Date().toLocaleTimeString()}.we are currently open`}</footer>
+  );
+  // return React.createElement("footer", null, "we are currently open");
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
