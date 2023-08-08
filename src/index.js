@@ -104,13 +104,17 @@ function Footer() {
   console.log(isOpen);
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>
             We are Open come and visit us until {closeHour}, come and visit us
           </p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          We are curently close. We are open from {openHour} to {closeHour}
+        </p>
       )}
     </footer>
   );
