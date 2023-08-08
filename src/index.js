@@ -70,48 +70,11 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
-        name="Focaccia"
-        ingredients="Bread with italian olive oil and rosemary"
-        price={16}
-        photoName="pizzas/focaccia.jpg"
-        soldOut={false}
-      />
-      <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        price={12}
-        photoName="pizzas/spinaci.jpg"
-        soldOut={false}
-      />
-      <Pizza
-        name="Pizza Margherita"
-        ingredients="Tomato and mozarella"
-        price={10}
-        photoName="pizzas/margherita.jpg"
-        soldOut={false}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        ingredients="Tomato, mozarella, mushrooms, and onion"
-        price={12}
-        photoName="pizzas/funghi.jpg"
-        soldOut={false}
-      />
-      <Pizza
-        name="Pizza Salamino"
-        ingredients="Tomato, mozarella, and pepperoni"
-        price={15}
-        photoName="pizzas/salamino.jpg"
-        soldOut={true}
-      />
-      <Pizza
-        name="Pizza Prosciutto"
-        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
-        price={18}
-        photoName="pizzas/prosciutto.jpg"
-        soldOut={false}
-      />
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => {
+          return <Pizza data={pizza} key={pizza.name} />;
+        })}
+      </ul>
     </main>
   );
 }
@@ -119,19 +82,19 @@ function Menu() {
 function Pizza(props) {
   const hour = new Date().getHours();
   console.log(hour);
-  const openHour = 12;
-  const closeHour = 22;
-  const isOpen = hour >= openHour && hour <= closeHour ? true : false;
-
+  // const openHour = 12;
+  // const closeHour = 22;
+  // const isOpen = hour >= openHour && hour <= closeHour ? true : false;
+  const { photoName, name, ingredients, price } = props.data;
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt="spinaci pizza" />
+    <li className="pizza">
+      <img src={photoName} alt="spinaci pizza" />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price}</span>
+        <h3>{name}</h3>
+        <p>{ingredients}</p>
+        <span>{price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
