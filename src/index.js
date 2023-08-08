@@ -74,7 +74,7 @@ function Menu() {
       {pizzaData.length > 0 && (
         <ul className="pizzas">
           {pizzaData.map((pizza) => {
-            return <Pizza data={pizza} key={pizza.name} />;
+            return <Pizza pizzaObj={pizza} key={pizza.name} />;
           })}
         </ul>
       )}
@@ -82,20 +82,20 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
-  const { photoName, name, ingredients, price, soldOut } = props.data;
+function Pizza({ pizzaObj }) {
+  // const { photoName, name, ingredients, price, soldOut } = props.data;
 
-  if (soldOut) {
+  if (pizzaObj.soldOut) {
     return null;
   }
 
   return (
     <li className="pizza">
-      <img src={photoName} alt="spinaci pizza" />
+      <img src={pizzaObj.photoName} alt="spinaci pizza" />
       <div>
-        <h3>{name}</h3>
-        <p>{ingredients}</p>
-        <span>{price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -129,12 +129,10 @@ function Footer() {
   // return React.createElement("footer", null, "we are currently open");
 }
 
-function Order(props) {
+function Order({ closeHour }) {
   return (
     <div className="order">
-      <p>
-        We are Open come and visit us until {props.closeHour}, come and visit us
-      </p>
+      <p>We are Open come and visit us until {closeHour}, come and visit us</p>
       <button className="btn">Order</button>
     </div>
   );
